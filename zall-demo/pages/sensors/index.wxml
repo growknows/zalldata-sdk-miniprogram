@@ -1,0 +1,16 @@
+
+<view class="container">
+    <view class="btn-item">
+        <button type="primary"  plain="true" bindtap="onLogin">登录</button>
+    </view>
+
+    <view class="btn-item">
+        <button type="primary" bindtap="onTrack">上报事件</button>
+    </view>
+    <view class="btn-item">
+        <button type="default" plain="true" bindtap="onChange">设置公共属性</button>
+    </view>
+    <view class="btn-item">
+        <button type="default" plain="true" bindtap="onChangeProfile">设置用户属性</button>
+    </view>
+</view>
