@@ -16,22 +16,23 @@ Page({
         }
   },
   onLogin() {
-        getApp().sensors.registerApp({
-            $distinctIdType: 3
+        getApp().zalldata.registerApp({
+            $distinctIdType: 3,
+            $originalIdType: 4
         })
-        getApp().sensors.login('123456')
+        getApp().zalldata.login('123456')
   },
   onTrack() {
-    getApp().sensors.track('MemberRegister', {content: '他是谁'})
+    getApp().zalldata.track('MemberRegister', {content: '他是谁'})
   },
 
   onChange() {
-    getApp().sensors.registerApp({
+    getApp().zalldata.registerApp({
         $platform: 'miniapp'
     })
   },
   onChangeProfile() {
-    getApp().sensors.setProfile({
+    getApp().zalldata.setProfile({
         $title: '你好'
     })
   }
