@@ -1,9 +1,9 @@
 // app.js
 
-var sensors = require('./utils/zalldata.min');
+var zalldata = require('./utils/zalldata.min');
 // 配置初始化参数
-sensors.setPara({
-    name: 'sensors',
+zalldata.setPara({
+    name: 'zall',
     server_url: 'https://logcollect.zalldata.cn/a?project=z7adds&service=zall',
     // 全埋点控制开关
     autoTrack: {
@@ -24,12 +24,22 @@ sensors.setPara({
 
 App({
     onLaunch() {
-        this.sensors = sensors
+        this.zalldata = zalldata
 
-        // 初始化 SDK
-        // 不使用 openid 作为匿名 ID
-        // sensors.setOpenid('openid888', true);
+       
+        // 获取到openid和unionid后
+        sensors.identify('test-openid-11111')
+        sensors.registerApp({
+            $distinctIdType: 4
+        })
+         // 初始化 SDK
         sensors.init();
+
+        sensors.registerApp({
+            $distinctIdType: 3,
+            $originalIdType: 4
+        })
+        sensors.login('test-unionid-22222')
 
         // 登录
         wx.login({
@@ -40,10 +50,12 @@ App({
                 wx.request({
                     url: '后端获取 OpenID 的请求',
                     success: function (res) {
-                        if (res.OpenID) {
-                            sensors.setOpenid(res.OpenID, true);
-                            sensors.init();
-                        }
+                        sensors.identify('unionid-11111')
+                        sensors.registerApp({
+                            $distinctIdType: 3,
+                            $originalIdType: 4
+                        })
+                        sensors.init();
                     },
                     error: function () {
                         // 如果获取 openid 失败，SDK 会以 UUID 作为匿名 ID 发数据
