@@ -12,7 +12,7 @@ Page({
   onShareAppMessage() {
         return {
             title: '埋点采集',
-            path: "pages/sensors/index"
+            path: "pages/example/index"
         }
   },
   onLogin() {
@@ -20,7 +20,7 @@ Page({
             $distinctIdType: 3,
             $originalIdType: 4
         })
-        getApp().zalldata.login('123456')
+        getApp().zalldata.login('test-user-123456')
   },
   onTrack() {
     getApp().zalldata.track('MemberRegister', {content: '他是谁'})

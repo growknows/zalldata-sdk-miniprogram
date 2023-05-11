@@ -26,7 +26,6 @@ App({
     onLaunch() {
         this.zalldata = zalldata
 
-       
         // 获取到openid和unionid后
         zalldata.identify('test-openid-11111')
         zalldata.registerApp({
@@ -34,6 +33,8 @@ App({
         })
          // 初始化 SDK
         zalldata.init();
+
+        // 多域用户合并策略，同时关联unionid和openid,若无此需求，以下可省略
 
         zalldata.registerApp({
             $distinctIdType: 3,
