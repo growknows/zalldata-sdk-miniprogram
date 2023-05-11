@@ -28,18 +28,18 @@ App({
 
        
         // 获取到openid和unionid后
-        sensors.identify('test-openid-11111')
-        sensors.registerApp({
+        zalldata.identify('test-openid-11111')
+        zalldata.registerApp({
             $distinctIdType: 4
         })
          // 初始化 SDK
-        sensors.init();
+        zalldata.init();
 
-        sensors.registerApp({
+        zalldata.registerApp({
             $distinctIdType: 3,
             $originalIdType: 4
         })
-        sensors.login('test-unionid-22222')
+        zalldata.login('test-unionid-22222')
 
         // 登录
         wx.login({
@@ -50,16 +50,16 @@ App({
                 wx.request({
                     url: '后端获取 OpenID 的请求',
                     success: function (res) {
-                        sensors.identify('unionid-11111')
-                        sensors.registerApp({
+                        zalldata.identify('unionid-11111')
+                        zalldata.registerApp({
                             $distinctIdType: 3,
                             $originalIdType: 4
                         })
-                        sensors.init();
+                        zalldata.init();
                     },
                     error: function () {
                         // 如果获取 openid 失败，SDK 会以 UUID 作为匿名 ID 发数据
-                        sensors.init();
+                        zalldata.init();
                     }
                 });
             }
