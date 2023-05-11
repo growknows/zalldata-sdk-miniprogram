@@ -1,9 +1,9 @@
 var conf = {
-  // 神策分析注册在APP全局函数中的变量名，在非app.js中可以通过getApp().sensors(你这里定义的名字来使用)
-  name: 'sensors',
-  // 如果要通过sdk自动获取openid，需要在神策分析中配置appid和appsercret，并在这里标志appid,不需要的话，不用填。
+  // 分析注册在APP全局函数中的变量名，在非app.js中可以通过getApp().sensors(你这里定义的名字来使用)
+  name: 'zall',
+  // 如果要通过sdk自动获取openid，需要在分析中配置appid和appsercret，并在这里标志appid,不需要的话，不用填。
   appid: 'xxxxx',
-  // 神策分析数据接收地址
+  // 分析数据接收地址
   // server_url: 'https://xxxxx.datasink.xxxx/sa.gif?project=default&token=27eeee',
   server_url:'https://test-syg122.datasink.sensorsdata.cn/sa.gif',
   //默认使用队列发数据时候，两条数据发送间的最大间隔
