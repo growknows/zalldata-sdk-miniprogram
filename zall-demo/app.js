@@ -2,9 +2,10 @@
 
 var zalldata = require('./utils/zalldata.min');
 // 配置初始化参数
+// https://coll-cdp.super.jinyafumall.com/sa?project=jinyafu&service=jinyafu&token=73a1d0e28c8af0e9144a360eebd7fbbe
 zalldata.setPara({
     name: 'zall',
-    server_url: 'https://logcollect.zalldata.cn/a?project=z7adds&service=zall',
+    server_url: '',
     // 全埋点控制开关
     autoTrack: {
         appLaunch: true, // 默认为 true，false 则关闭 $MPLaunch 事件采集
@@ -24,23 +25,35 @@ zalldata.setPara({
 
 App({
     onLaunch() {
-        this.zalldata = zalldata
+        this.zalldata = zalldata 
+        // 方案一: 单id上报
+        // zalldata.register({
+        //   $distinctIdType: 4
+        // })
+        // zalldata.instance.setOpenid('oP3Ud5eP6YmEvgSOZxVVKrbyYcch', true)
+        // zalldata.init();
+        //
+        // return
 
-        // 获取到openid和unionid后
-        zalldata.identify('test-openid-11111')
-        zalldata.registerApp({
+
+         // 方案二: 关联 OpenID 和 UnionID
+          // 设置id类型
+          zalldata.registerApp({
             $distinctIdType: 4
         })
-         // 初始化 SDK
-        zalldata.init();
-
-        // 多域用户合并策略，同时关联unionid和openid,若无此需求，以下可省略
-
-        zalldata.registerApp({
-            $distinctIdType: 3,
-            $originalIdType: 4
-        })
-        zalldata.login('test-unionid-22222')
+        setTimeout(() => {
+             // 设置 openid 为 distinctId 
+            zalldata.setOpenid('oP3Ud5eP6YmEvgSOZxVVKrbyYcch', true)
+           
+            // 初始化 SDK
+            zalldata.init();
+            // 多通达触达用户合并策略，unionid和openid合并成同一用户
+            zalldata.registerApp({
+                $distinctIdType: 3,
+                $originalIdType: 4
+            })
+            zalldata.login('o_-H853QjMO9Q_YuxKYXEW1DjeEYch')
+        }, 1000)
 
         // 登录
         wx.login({
@@ -51,9 +64,8 @@ App({
                 wx.request({
                     url: '后端获取 OpenID 的请求',
                     success: function (res) {
-                        zalldata.identify('unionid-11111')
+                        zalldata.setOpenid('oP3Ud5eP6YmEvgSOZxVVKrbyYcch', true)
                         zalldata.registerApp({
-                            $distinctIdType: 3,
                             $originalIdType: 4
                         })
                         zalldata.init();

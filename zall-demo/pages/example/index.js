@@ -17,10 +17,10 @@ Page({
   },
   onLogin() {
         getApp().zalldata.registerApp({
-            $distinctIdType: 3,
+            $distinctIdType: 2,
             $originalIdType: 4
         })
-        getApp().zalldata.login('test-user-123456')
+        getApp().zalldata.login('15010091111')
   },
   onTrack() {
     getApp().zalldata.track('MemberRegister', {content: '他是谁'})
